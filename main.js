@@ -3,8 +3,20 @@ const qrcode = require("qrcode-terminal");
 const mongoose = require("mongoose");
 const WebSocket = require("ws");
 
+const now = new Date();
+const indianDateTime = now.toLocaleString("en-IN", {
+  timeZone: "Asia/Kolkata",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: true, // For 12-hour format with AM/PM
+});
+console.log(indianDateTime);
 // MongoDB Connection
-const mongoURI =process.env.mongoURI;
+const mongoURI = process.env.mongoURI";
 mongoose
   .connect(mongoURI)
   .then(() => console.log("MongoDB connected successfully!"))
@@ -94,7 +106,7 @@ client.on("message", async (message) => {
       mediaMimeType: message.hasMedia ? media.mimetype : null,
     });
     await newMessage.save();
-    console.log("Message saved to MongoDB!");
+    console.log("Message saved to MongoDB!" + " " + indianDateTime);
   } catch (err) {
     console.error("Error saving message to MongoDB:", err);
   }
