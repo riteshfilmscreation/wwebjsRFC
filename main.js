@@ -4,8 +4,7 @@ const mongoose = require("mongoose");
 const WebSocket = require("ws");
 
 // MongoDB Connection
-const mongoURI =
-  "mongodb+srv://riteshfilmscreation:riteshfilmscreation@riteshfilmscreation.lspmkds.mongodb.net/?retryWrites=true&w=majority&appName=riteshfilmscreation";
+const mongoURI =process.env.mongoURI;
 mongoose
   .connect(mongoURI)
   .then(() => console.log("MongoDB connected successfully!"))
