@@ -3,8 +3,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "node server.js"  // Example:  start a Node.js server
-  },
+    "start": "node" },
   "dependencies": {
     "mongoose": "^8.16.1",
     "puppeteer-core": "^24.11.2",
