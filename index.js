@@ -1,11 +1,17 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const WebSocket = require('ws');
 const qrcode = require('qrcode-terminal');
 require('dotenv').config();
 
 const mongoURI = process.env.MONGO_URI;
-const mongoClient = new MongoClient(mongoURI);
+const mongoClient = new MongoClient(mongoURI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 let db;
 
 const wwebClient = new Client({
