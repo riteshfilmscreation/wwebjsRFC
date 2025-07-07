@@ -1,21 +1,15 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const WebSocket = require('ws');
 const qrcode = require('qrcode-terminal');
 require('dotenv').config();
 
 const mongoURI = "mongodb+srv://riteshfilmscreation:riteshfilmscreation@riteshfilmscreation.lspmkds.mongodb.net/?retryWrites=true&w=majority&appName=riteshfilmscreation";
 // const mongoURI = process.env.MONGO_URI;
-console.log("testing");
-const mongoClient = new MongoClient(mongoURI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-let db;
 
+const mongoClient = new MongoClient(mongoURI);
+let db;
+console.log("MongoClient URI Done");
 const wwebClient = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -44,7 +38,7 @@ function broadcast(event, data) {
         }
     });
 }
-
+console.log("MongoClient Try Connect");
 async function main() {
     await mongoClient.connect();
     console.log('Connected to MongoDB');
